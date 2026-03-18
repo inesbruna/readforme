@@ -15,9 +15,8 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _cameraPermissionGranted = MutableStateFlow(false)
-    val cameraPermissionGranted = _cameraPermissionGranted.asStateFlow()
 
-    private val _recognizedText = MutableStateFlow("Aguardando leitura...")
+    private val _recognizedText = MutableStateFlow("")
     val recognizedText = _recognizedText.asStateFlow()
 
     fun onPermissionResult(granted: Boolean) {

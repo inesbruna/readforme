@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         setContent {
-            MainView(cameraExecutor = cameraExecutor)
+            MainScreen(cameraExecutor = cameraExecutor)
         }
 
     }
