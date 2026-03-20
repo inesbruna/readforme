@@ -1,5 +1,9 @@
 package com.example.readforme
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.readforme.data.repository.TextRepository
@@ -13,6 +17,15 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val repository: TextRepository
 ) : ViewModel() {
+    private val _currentScreen = MutableStateFlow<ScreenState>(ScreenState.Camera)
+    val currentScreen = _currentScreen.asStateFlow()
+
+    fun navigate(screen: ScreenState) {
+        if (screen != ScreenState.Camera) {
+            clearRecognizedText()
+        }
+        _currentScreen.value = screen
+    }
 
     private val _cameraPermissionGranted = MutableStateFlow(false)
 
@@ -29,6 +42,10 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             repository.saveText(text)
         }
+    }
+
+    fun clearRecognizedText() {
+        _recognizedText.value = ""
     }
 }
 
