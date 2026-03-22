@@ -11,7 +11,7 @@ import java.util.concurrent.ExecutorService
 @Composable
 fun MainScreen(
     cameraExecutor: ExecutorService,
-    viewModel: MainViewModel = androidx.hilt.navigation.compose.hiltViewModel()
+    viewModel: MainViewModel = androidx.hilt.navigation.compose.hiltViewModel(),
 ) {
     val currentScreen = viewModel.currentScreen.collectAsState().value
 
@@ -22,7 +22,7 @@ fun MainScreen(
     Drawer(
         currentScreen = currentScreen,
         onNavigate = { viewModel.navigate(it)}
-    ) { padding ->
+    ) {
         MainView(
             cameraExecutor = cameraExecutor,
             screen = currentScreen,

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.readforme.data.repository.TextRepository
 import com.example.readforme.screens.ScreenState
+import com.example.readforme.service.TTSManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val repository: TextRepository
+    private val repository: TextRepository,
+    private val ttsManager: TTSManager
 ) : ViewModel() {
 
     /* FOR DEBUG ONLY
@@ -60,6 +62,19 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             repository.deleteAllTexts()
         }
+    }
+
+    fun onSpeakClicked(text: String) {
+        ttsManager.speak(text)
+    }
+
+    fun stopSpeak(){
+        ttsManager.stop()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        ttsManager.shutdown()
     }
 }
 
