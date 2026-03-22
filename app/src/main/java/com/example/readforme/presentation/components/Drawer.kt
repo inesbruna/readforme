@@ -17,7 +17,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.readforme.ScreenState
+import com.example.readforme.screens.ScreenState
 import com.example.readforme.ui.theme.Primary
 import kotlinx.coroutines.launch
 

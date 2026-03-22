@@ -3,6 +3,10 @@ package com.example.readforme
 import androidx.annotation.OptIn
 import androidx.camera.core.ExperimentalGetImage
 import androidx.compose.runtime.Composable
+import com.example.readforme.screens.CameraScreen
+import com.example.readforme.screens.ReadingScreen
+import com.example.readforme.screens.ScreenState
+import com.example.readforme.screens.SettingsScreen
 import java.util.concurrent.ExecutorService
 
 

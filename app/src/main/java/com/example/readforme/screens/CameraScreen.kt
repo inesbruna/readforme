@@ -1,4 +1,4 @@
-package com.example.readforme
+package com.example.readforme.screens
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -19,11 +19,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -39,6 +44,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.readforme.MainViewModel
 import com.example.readforme.ui.theme.Background
 import com.example.readforme.ui.theme.Primary
 import com.google.mlkit.vision.common.InputImage
@@ -149,7 +155,10 @@ fun CameraScreen(
                     .align(Alignment.BottomEnd)
                     .padding(16.dp)
             ) {
-                Text("Voltar")
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "Back"
+                )
             }
         }
 

@@ -1,4 +1,4 @@
-package com.example.readforme
+package com.example.readforme.screens
 
 sealed class ScreenState {
     object Camera : ScreenState()

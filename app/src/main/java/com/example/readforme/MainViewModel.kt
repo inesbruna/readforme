@@ -1,12 +1,9 @@
 package com.example.readforme
 
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.readforme.data.repository.TextRepository
+import com.example.readforme.screens.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,6 +14,17 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val repository: TextRepository
 ) : ViewModel() {
+
+    /* FOR DEBUG ONLY
+    init {
+        viewModelScope.launch {
+            repository.getAllTexts().collect {
+
+            }
+        }
+    }
+     */
+
     private val _currentScreen = MutableStateFlow<ScreenState>(ScreenState.Camera)
     val currentScreen = _currentScreen.asStateFlow()
 
@@ -46,6 +54,12 @@ class MainViewModel @Inject constructor(
 
     fun clearRecognizedText() {
         _recognizedText.value = ""
+    }
+
+    fun clearDatabase() {
+        viewModelScope.launch {
+            repository.deleteAllTexts()
+        }
     }
 }
 

@@ -14,7 +14,15 @@ class TextRepository @Inject constructor(
         textDao.insert(TextEntity(content = text))
     }
 
+    suspend fun deleteAllTexts(){
+        textDao.deleteAll()
+    }
+
     fun getAllTexts(): Flow<List<TextEntity>> {
         return textDao.getAllTexts()
+    }
+
+    fun getLastText(): Flow<TextEntity> {
+        return textDao.getLastText()
     }
 }
