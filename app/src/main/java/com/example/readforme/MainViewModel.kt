@@ -1,19 +1,26 @@
 package com.example.readforme
 
+import android.graphics.Bitmap.Config
+import android.speech.tts.Voice
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.readforme.data.local.ConfigEntity
+import com.example.readforme.data.repository.ConfigRepository
 import com.example.readforme.data.repository.TextRepository
 import com.example.readforme.screens.ScreenState
 import com.example.readforme.service.TTSManager
+import com.google.android.gms.common.util.Strings
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val repository: TextRepository,
+    private val textRepository: TextRepository,
     private val ttsManager: TTSManager
 ) : ViewModel() {
 
@@ -46,11 +53,12 @@ class MainViewModel @Inject constructor(
         _cameraPermissionGranted.value = granted
     }
 
+    // Text Recognized + Room
     fun onTextRecognized(text: String) {
         _recognizedText.value = text
 
         viewModelScope.launch {
-            repository.saveText(text)
+            textRepository.saveText(text)
         }
     }
 
@@ -60,7 +68,7 @@ class MainViewModel @Inject constructor(
 
     fun clearDatabase() {
         viewModelScope.launch {
-            repository.deleteAllTexts()
+            textRepository.deleteAllTexts()
         }
     }
 

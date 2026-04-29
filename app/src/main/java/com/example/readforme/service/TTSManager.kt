@@ -22,6 +22,14 @@ class TTSManager @Inject constructor(
         }
     }
 
+    fun setLanguage(language:String, country:String){
+        tts?.language = Locale(language, country);
+    }
+
+    fun setSpeed(speed: Float) {
+        tts?.setSpeechRate(speed)
+    }
+
     fun speak(text: String) {
         if (isReady) {
             tts?.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)

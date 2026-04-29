@@ -3,6 +3,7 @@ package com.example.readforme.di
 import android.content.Context
 import androidx.room.Room
 import com.example.readforme.data.local.AppDatabase
+import com.example.readforme.data.local.ConfigDao
 import com.example.readforme.data.local.TextDao
 import dagger.Module
 import dagger.Provides
@@ -23,11 +24,18 @@ object DatabaseModule {
             context,
             AppDatabase::class.java,
             "readforme_database"
-        ).build()
+        )
+        .fallbackToDestructiveMigration()
+        .build()
     }
 
     @Provides
     fun provideTextDao(database: AppDatabase): TextDao {
         return database.textDao()
+    }
+
+    @Provides
+    fun provideConfigDao(database: AppDatabase): ConfigDao {
+        return database.configDao()
     }
 }

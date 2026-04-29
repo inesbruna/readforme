@@ -18,11 +18,11 @@ class TextRepository @Inject constructor(
         textDao.deleteAll()
     }
 
-    fun getAllTexts(): Flow<List<TextEntity>> {
+    suspend fun getAllTexts(): Flow<List<TextEntity>> {
         return textDao.getAllTexts()
     }
 
-    fun getLastText(): Flow<TextEntity> {
+    suspend fun getLastText(): Flow<TextEntity> {
         return textDao.getLastText()
     }
 }
