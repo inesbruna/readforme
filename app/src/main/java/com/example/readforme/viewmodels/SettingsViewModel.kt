@@ -63,14 +63,14 @@ class SettingsViewModel @Inject constructor(
     }
 
     // REPOSITORY UPDATES
-    private suspend fun updateSpeed(speed: Float) {
+    private fun updateSpeed(speed: Float) {
         viewModelScope.launch {
             Log.d("WARNING", "Atualizando speed para: " + speed)
             configRepository.updateSpeed(speed)
         }
     }
 
-    private suspend fun updateLanguage(language: String) {
+    private fun updateLanguage(language: String) {
         viewModelScope.launch {
             configRepository.updateLanguage(language)
         }

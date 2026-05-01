@@ -5,7 +5,9 @@ import android.speech.tts.TextToSpeech
 import dagger.hilt.android.qualifiers.ApplicationContext
 import java.util.Locale
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class TTSManager @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
@@ -23,7 +25,7 @@ class TTSManager @Inject constructor(
     }
 
     fun setLanguage(language:String, country:String){
-        tts?.language = Locale(language, country);
+        tts?.language = Locale(language, country)
     }
 
     fun setSpeed(speed: Float) {
